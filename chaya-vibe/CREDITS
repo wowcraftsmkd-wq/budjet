@@ -1,0 +1,16 @@
+ചായ വൈബ് (Chaya Vibe) — third-party assets
+
+Fonts
+- Noto Serif Malayalam — Google / Noto project, SIL Open Font License 1.1 (fonts/OFL.txt). github.com/google/fonts/tree/main/ofl/notoserifmalayalam
+- Chilanka — Santhosh Thottingal / Swathanthra Malayalam Computing, SIL Open Font License 1.1. github.com/google/fonts/tree/main/ofl/chilanka
+
+Code
+- Brush-stroke engine (engine.js) adapted from the Lemo-Opuscar library's Watercolor Brush style (github.com/lemomo-ai/lemo-opuscar), under that repository's licence.
+- Sound-effect helpers from the library's core/audio/sfx.py.
+
+Music and sound
+- Original score composed for this film and synthesised in mix.py (guitar by Karplus–Strong, kalimba, flute, pad, bass). No samples, no licensed tracks.
+- All sound effects (coins, glass, rain, pour, radio, crickets, bus horn, bike, clink) synthesised in mix.py.
+
+Pictures
+- Everything is drawn in code (brush strokes in a browser canvas). No photos, stock footage or generated images.

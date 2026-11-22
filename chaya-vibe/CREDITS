@@ -8,6 +8,9 @@ Code
 - Brush-stroke engine (engine.js) adapted from the Lemo-Opuscar library's Watercolor Brush style (github.com/lemomo-ai/lemo-opuscar), under that repository's licence.
 - Sound-effect helpers from the library's core/audio/sfx.py.
 
+Voice
+- Malayalam voice-over: Microsoft Azure neural voice ml-IN-MidhunNeural, generated through the free Microsoft Edge online text-to-speech service with the open-source edge-tts tool (github.com/rany2/edge-tts, LGPL-3.0). Use of the voice is subject to Microsoft's terms for that service; check them before commercial use. Script: voice/lines.json; generator: voice/gen.py.
+
 Music and sound
 - Original score composed for this film and synthesised in mix.py (guitar by Karplus–Strong, kalimba, flute, pad, bass). No samples, no licensed tracks.
 - All sound effects (coins, glass, rain, pour, radio, crickets, bus horn, bike, clink) synthesised in mix.py.

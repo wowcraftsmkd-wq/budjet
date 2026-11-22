@@ -1,8 +1,8 @@
 # ചായ ☕ വൈബ് — Treatment
 
 Style: **Watercolor Brush** (`styles/watercolor`). Vertical 1080×1920, 30 fps, 56.7 s (stretched from ~42 s so every Malayalam line stays on screen long enough to read).
-Language: Malayalam on screen. No voice-over (user chose option A): the on-screen lines carry the
-script, the music and foley carry the feeling. Ends on a call to action: "comment your chai spot".
+Language: Malayalam on screen and in the voice-over (male neural voice ml-IN-MidhunNeural, one line
+per on-screen line, music ducked ~4 dB under it). A first cut without voice is kept as chaya-vibe.mp4. Ends on a call to action: "comment your chai spot".
 
 ## 1. Three candidate structures
 

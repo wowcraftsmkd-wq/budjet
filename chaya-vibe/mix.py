@@ -202,9 +202,30 @@ for k in range(5): add(amb, bird(rng.uniform(.6, 1)), 27.2 + k * 1.05 + rng.unif
 add(amb, hiss(6.2, 1.2), 42.4, 1, 0); add(amb, hiss(8.0, .8), 48.3, 1, 0)
 room = bp(sfx.brown(DUR + 1.5), 120, 500); room = room / np.abs(room).max() * .012; amb[:len(room)] += room[:N, None]
 
+# ---------- voice-over ----------
+VO = json.load(open(os.path.join(HERE, 'voice', 'schedule.json')))
+voice = np.zeros(N)
+for v in VO:
+    x, sr = sf.read(os.path.join(HERE, 'voice', v['id'] + '.wav')); x = x if x.ndim == 1 else x.mean(1)
+    x = hp(x, 90, 2); s0 = int(v['start'] * SR); voice[s0:s0 + len(x)] += x[:N - s0]
+voice = sfx.compress(voice, thr=.18, ratio=3, att=.004, rel=.1)
+speech = np.zeros(N, bool)
+for v in VO: speech[int(v['start'] * SR):int((v['start'] + v['dur']) * SR)] = True
+rms = lambda x: np.sqrt((x ** 2).mean() + 1e-12)
+vr = rms(voice[speech]); voice = sfx.limit(voice, ceil=vr * 3.2)
+# music ducks about 4 dB under the voice, with a smoothed envelope
+from scipy.ndimage import uniform_filter1d
+duck = 1 - .37 * np.clip(uniform_filter1d(speech.astype(float), int(.35 * SR)) * 1.6, 0, 1)
+music *= duck[:, None]
+bed = (music * .85 + amb)[:, :].mean(1)
+target = rms(bed[speech]) * 10 ** (10 / 20)              # voice ≈ 10 dB above the bed during speech
+voice *= target / rms(voice[speech])
+vrev = fftconvolve(voice, lp(rng.standard_normal(int(.5 * SR)), 4000) * np.exp(-t_(.5) / .08))[:N]; vrev *= .04 / max(1e-9, np.abs(vrev).max()) * np.abs(voice).max()
+vo = np.stack([voice + vrev * .5, voice + vrev * .5], 1)
+
 # ---------- mix ----------
 fx = np.stack([hp(fx[:, c], 90, 2) for c in (0, 1)], 1); amb = np.stack([hp(amb[:, c], 70, 2) for c in (0, 1)], 1)
-mix = music * .85 + fx * 1.0 + amb * 1.0
+mix = music * .85 + fx * 1.0 + amb * 1.0 + vo
 # music ducks a little under the pour and the clink
 mix = mix / np.abs(mix).max() * .89
 os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)

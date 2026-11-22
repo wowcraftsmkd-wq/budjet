@@ -1,6 +1,6 @@
 """Malayalam voice-over with edge-tts (Microsoft neural voice, needs network) → voice/vNN.wav + voice/dur.json"""
 import json, os, subprocess, sys
-HERE = os.path.dirname(os.path.abspath(__file__)); VOICE = os.environ.get('VOICE', 'ml-IN-MidhunNeural')
+HERE = os.path.dirname(os.path.abspath(__file__)); VOICE = os.environ.get('VOICE', 'ml-IN-SobhanaNeural')
 L = json.load(open(os.path.join(HERE, 'lines.json'))); dur = {}
 for ln in L:
     mp3 = os.path.join(HERE, ln['id'] + '.mp3'); wav = os.path.join(HERE, ln['id'] + '.wav')

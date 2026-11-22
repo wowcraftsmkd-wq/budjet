@@ -5,7 +5,7 @@ HERE=$(cd "$(dirname "$0")" && pwd)
 LIB=${LIB:-$HOME/lemo-opuscar}
 export LIB
 [ -f "$LIB/core/render/video.mjs" ] || { echo "set LIB to the Lemo-Opuscar library folder"; exit 1; }
-# voice (needs network; the WAVs in voice/ are already made): VOICE=ml-IN-MidhunNeural python3 "$HERE/voice/gen.py"
+# voice (needs network; the WAVs in voice/ are already made): VOICE=ml-IN-SobhanaNeural python3 "$HERE/voice/gen.py"
 cd "$LIB"
 node core/render/events.mjs "$HERE" --size 1080x1920
 "$LIB/.venv/bin/python" "$HERE/mix.py"
